@@ -1,31 +1,37 @@
-{% extends 'Home/Basic.html' %} {% comment %} Title {% endcomment %} {% block title %} Home {% endblock %} {% comment %} Body {% endcomment %} {% block body %}
+{% extends 'Home/Basic.html' %} {% comment %} Title {% endcomment %} {% block title %} Home {% endblock %}
+<!--Body -->
+{% block body %}
 <div class="container">
     <h1> {{ display }} </h1>
     <div class="row">
+        {% for card in products%}
         <!-- Lopping using Django -->
-        {% for card in products %}
-        <div class="col-6 uk-animation-toggle">
-            <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin " uk-grid>
-                <div class="uk-card-media-left uk-cover-container col-4">
-                    <img src="/media/{{card.product_thumbnail}}" class='w-100' alt="Image Product" uk-cover>
-                    <canvas width="600" height="400"></canvas>
-                </div>
-                <div class="col-8">
-                    <div class="uk-card-body">
-                        <h3 class="uk-card-title">{{card.product_name}}</h3>
-                        <p>{{card.product_disc}}</p>
-                    </div>
-                </div>
-                <h3 class="mx-4"> $ {{card.product_pricse}}</h3>
+        <div class="card ml-3" style="width: 18rem;">
+            <img src="/media/{{card.product_thumbnail}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{card.product_name}}</h5>
+                <p class="card-text">{{card.product_disc}}</p>
+                <button href="" class="btn btn-primary" id='cartbtn'>Add To Cart</button>
             </div>
+            {% if card|divisibleby:2 and not forloop.last %}
+            </dv>
+            <div class='row'>
+                {% endif %}
+            </div>
+            {% endfor %}
         </div>
-        {% if card|divisibleby:2 and forloop.last %}
-        <!-- close row-->
-    </div>
-    <!-- new row -->
-    <div class="row">
-        {% endif %} {% endfor %}
+
     </div>
 
-</div>
-{% endblock %}
+    {% endblock %} {% block Js %}
+    <!--When Add Ad to cart is clicked-->
+    <script>
+        $('#cartbtn').click(function() {
+            console.log('clicked')
+            cart = {
+                "Item": 'Added'
+            };
+
+        })
+    </script>
+    {% endblock %}
