@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Product(models.Model):
+    #Primary Key defautly id
     product_name = models.CharField(max_length=25)
     product_pricse = models.FloatField()
     product_disc  =  models.CharField(max_length=500)

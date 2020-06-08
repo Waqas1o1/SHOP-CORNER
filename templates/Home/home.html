@@ -11,7 +11,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{card.product_name}}</h5>
                 <p class="card-text">{{card.product_disc}}</p>
-                <button href="" class="btn btn-primary" id='cartbtn'>Add To Cart</button>
+                <button href="" class="btn btn-primary cartbtn" id='cartbtn{{card.id}}'>Add To Cart</button>
             </div>
             {% if card|divisibleby:2 and not forloop.last %}
             </dv>
@@ -23,15 +23,27 @@
 
     </div>
 
-    {% endblock %} {% block Js %}
+    {% endblock %}
+
+    <!-- Block Java Script -->
+    {% block Js %}
     <!--When Add Ad to cart is clicked-->
     <script>
-        $('#cartbtn').click(function() {
-            console.log('clicked')
-            cart = {
-                "Item": 'Added'
-            };
-
+        // $('.cartbtn').click(function() {
+        //     // console.log(cartid)
+        //     cartid = this.id
+        //     console.log('Clicked')
+        //     console.log(cartid)
+        //     cart = {
+        //         'Items': 'Added'
+        //     };
+        //     localStorage.setItem("Shop", JSON.stringify(cart))
+        //     var shoping = localStorage.getItem('Shop')
+        //     console.log(shoping)
+        //     document.getElementById(cartid).innerHTML = "Clicked"
+        // })
+        $('.cartbtn').click(function() {
+            $('#showcart').popover('show');
         })
     </script>
     {% endblock %}
